@@ -1,0 +1,22 @@
+name: products_repository
+description: A repository that handles product related requests.
+version: 0.1.0+1
+publish_to: none
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies: 
+  collection: ^1.17.2
+  flutter:
+    sdk: flutter
+  products_api: 
+    path: '../products_api'  
+  rxdart: ^0.27.7
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  mocktail: ^1.0.0
+  test: ^1.19.2
+  very_good_analysis: ^5.1.0

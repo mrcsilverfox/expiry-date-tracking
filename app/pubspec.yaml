@@ -1,0 +1,43 @@
+name: app
+description: A Very Good Project created by Very Good CLI.
+version: 1.0.0+1
+publish_to: none
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  bloc: ^8.1.2
+  common_ui:
+    path: ../packages/common_ui
+  equatable: ^2.0.5
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^8.1.3
+  flutter_localizations:
+    sdk: flutter
+  get_it: ^7.6.4
+  go_router: ^11.1.2
+  intl: ^0.18.0
+  memory_products_api:
+    path: ../packages/memory_products_api
+  mobile_scanner: ^3.4.1
+  open_food_facts_api:
+    path: ../packages/open_food_facts_api
+  open_food_facts_api_repository:
+    path: ../packages/open_food_facts_api_repository 
+  products_api:
+    path: ../packages/products_api  
+  products_repository:
+    path: ../packages/products_repository  
+
+dev_dependencies:
+  bloc_test: ^9.1.2
+  flutter_test:
+    sdk: flutter
+  mocktail: ^0.3.0
+  very_good_analysis: ^5.0.0
+
+flutter:
+  uses-material-design: true
+  generate: true

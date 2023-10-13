@@ -1,0 +1,20 @@
+name: memory_products_api
+description: A Flutter implementation of the ProductsApi that uses memory storage.
+version: 0.1.0+1
+publish_to: none
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  collection: ^1.17.2
+  flutter:
+    sdk: flutter
+  products_api:
+    path: ../products_api
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  mocktail: ^0.3.0
+  very_good_analysis: ^5.0.0
