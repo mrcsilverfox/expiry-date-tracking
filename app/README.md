@@ -162,3 +162,33 @@ Update the `CFBundleLocalizations` array in the `Info.plist` at `ios/Runner/Info
 [very_good_analysis_badge]: https://img.shields.io/badge/style-very_good_analysis-B22C89.svg
 [very_good_analysis_link]: https://pub.dev/packages/very_good_analysis
 [very_good_cli_link]: https://github.com/VeryGoodOpenSource/very_good_cli
+
+
+## Docs
+The app folder contains only the bloc and view (the presentation layer).
+The core functionality are defined and implemented inside the packages folder. 
+
+Others funcionalities use the clean architecture structure. (data, domain, presentation). 
+
+### Core
+#### Package open_food_facts_api
+We use the open food facts api to fetch the scanned product. We use the barcode to fetch the product. In the future we will can use own APIs, so is important to organize the code. 
+
+The package `open_food_facts_api` contains the client. It allows to fetch a product from the barcode. It return an open food facts product object. 
+
+#### Package open_food_facts_api_repository
+The package `open_food_facts_api_repository` contains our Product model. This allows us to not be coupled with the open api product implementation. The repo use the open food facts client to fetch the product and returns our product model. The model contains name, brand name and images.
+
+#### Package products_api
+The package `products_api` contains our data source. It is charge of manipulating the products entity. It defines simple CRUD operations, the domain product entity and the data product model. It will be used by the `products_repository`. 
+
+The only one implementation of products_api is `memory_products_api`. It stores products in memory. When the app is restarted, all products will be removed.
+
+Next implementations are: `sql_products_api` and `remote_products_api`. The first allows the user to store prodcuts in a local db. The letter stores the products in the cloud. 
+
+#### Package products_repository
+The package `products_repository` uses the `products_api` to retrive products, to add, edit and modify user's products. 
+In this case the repository is not an interface, but it is a concrete class. 
+
+
+### App

@@ -1,7 +1,8 @@
-import 'package:app/product/product.dart';
+import 'package:app/features/fetch_product/fetch_product.dart';
+import 'package:app/features/scanner/domain/qr_code_scanner_state.dart';
+import 'package:app/features/scanner/scanner.dart';
 import 'package:app/routes/routes.dart';
-import 'package:app/scanner/domain/qr_code_scanner_state.dart';
-import 'package:app/scanner/scanner.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';

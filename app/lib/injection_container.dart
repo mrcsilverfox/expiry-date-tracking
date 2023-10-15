@@ -1,4 +1,4 @@
-import 'package:app/product/product.dart';
+import 'package:app/features/fetch_product/fetch_product.dart';
 import 'package:get_it/get_it.dart';
 import 'package:memory_products_api/memory_products_api.dart';
 import 'package:open_food_facts_api/open_food_facts_api.dart';

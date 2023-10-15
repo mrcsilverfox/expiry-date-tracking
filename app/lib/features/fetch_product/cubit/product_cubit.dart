@@ -1,6 +1,6 @@
 import 'package:app/core/state/bloc_state_status.dart';
 import 'package:app/core/state/bloc_super_state.dart';
-import 'package:app/product/domain/usecases/usecases.dart';
+import 'package:app/features/fetch_product/fetch_product.dart';
 import 'package:bloc/bloc.dart';
 import 'package:open_food_facts_api_repository/open_food_facts_api_repository.dart';
 

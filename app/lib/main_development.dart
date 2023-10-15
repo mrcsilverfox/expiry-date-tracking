@@ -11,8 +11,8 @@
 
 import 'package:app/app/app.dart';
 import 'package:app/bootstrap.dart';
+import 'package:app/features/scanner/view/qr_code_scanner_page.dart';
 import 'package:app/injection_container.dart';
-import 'package:app/scanner/view/qr_code_scanner_page.dart';
 import 'package:flutter/material.dart';
 
 // // This example demonstrates how to setup nested navigation using a

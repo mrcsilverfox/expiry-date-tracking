@@ -1,13 +1,13 @@
 import 'package:app/app/view/root_screen.dart';
 import 'package:app/app/view/widgets/scaffold_with_nav_bar.dart';
 import 'package:app/features/add_product/add_product.dart';
-import 'package:app/scanner/view/qr_code_scanner_page.dart';
+import 'package:app/features/scanner/view/qr_code_scanner_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:open_food_facts_api_repository/open_food_facts_api_repository.dart';
-import 'package:products_api/products_api.dart';
+import 'package:products_repository/products_repository.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final pantryNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'pantryNav');
@@ -82,7 +82,7 @@ final router = GoRouter(
                       child: BlocProvider(
                         create: (context) => AddProductCubit(
                           product,
-                          GetIt.I<ProductsApi>(),
+                          GetIt.I<ProductsRepository>(),
                         ),
                         child: const AddProductPage(),
                       ),

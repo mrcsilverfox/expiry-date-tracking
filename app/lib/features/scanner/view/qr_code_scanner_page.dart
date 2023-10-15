@@ -1,6 +1,6 @@
-import 'package:app/product/product.dart';
-import 'package:app/scanner/scanner.dart';
-import 'package:app/scanner/view/qr_code_content.dart';
+import 'package:app/features/fetch_product/fetch_product.dart';
+import 'package:app/features/scanner/scanner.dart';
+import 'package:app/features/scanner/view/qr_code_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
