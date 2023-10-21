@@ -31,6 +31,7 @@ dependencies:
     path: ../packages/products_api  
   products_repository:
     path: ../packages/products_repository  
+  supabase_flutter: ^1.10.22
 
 dev_dependencies:
   bloc_test: ^9.1.2

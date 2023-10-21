@@ -12,8 +12,15 @@
       "name": "/packages",
       "path": "packages",
     },
+    {
+      "name": "supabase-functions",
+      "path": "supabase/functions"
+    }
   ],
   "settings": {
+    "files.exclude": {
+      "supabase/functions/": true
+    },
     "todo-tree.tree.showCountsInTree": false,
     "todo-tree.tree.showBadges": false,
     "todo-tree.filtering.excludeGlobs": [
@@ -21,6 +28,6 @@
     ],
     "dart.debugSdkLibraries": true,
     "dart.debugExternalPackageLibraries": true,
-    "dart.flutterSdkPath": "~/development/expired_date_tracking/.fvm/flutter_sdk"
+    "dart.flutterSdkPath": ".fvm/flutter_sdk",
   }
 }

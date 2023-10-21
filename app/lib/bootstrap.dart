@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AppBlocObserver extends BlocObserver {
   const AppBlocObserver();
@@ -32,5 +33,9 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
 
   await initializeDateFormatting('it_IT', null);
 
+  await Supabase.initialize(
+    url: 'https://xjcadvtszdlsniidtimn.supabase.co',
+    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhqY2FkdnRzemRsc25paWR0aW1uIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTc4OTI3MDcsImV4cCI6MjAxMzQ2ODcwN30.wMsIjVgEJhCFMCfdGiPOcWbVRsup2V4NRtSI1DYW2NE',
+  );
   runApp(await builder());
 }
