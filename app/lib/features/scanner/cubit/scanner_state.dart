@@ -1,15 +1,14 @@
 import 'package:app/core/state/bloc_state_status.dart';
 import 'package:equatable/equatable.dart';
 
-class QrCodeScannerState extends Equatable {
-
-  const QrCodeScannerState._({
+class ScannerState extends Equatable {
+  const ScannerState._({
     required this.code,
     required this.status,
     this.errorMessage,
   });
 
-  const QrCodeScannerState.initial()
+  const ScannerState.initial()
       : code = null,
         status = BlocStateStatus.initial,
         errorMessage = null;
@@ -17,8 +16,8 @@ class QrCodeScannerState extends Equatable {
   final BlocStateStatus status;
   final String? errorMessage;
 
-  QrCodeScannerState copyWith({String? code, BlocStateStatus? status}) {
-    return QrCodeScannerState._(
+  ScannerState copyWith({String? code, BlocStateStatus? status}) {
+    return ScannerState._(
       code: code ?? this.code,
       status: status ?? this.status,
       // ignore: avoid_redundant_argument_values
@@ -26,8 +25,8 @@ class QrCodeScannerState extends Equatable {
     );
   }
 
-  QrCodeScannerState copyWithError(String errorMessage) {
-    return QrCodeScannerState._(
+  ScannerState copyWithError(String errorMessage) {
+    return ScannerState._(
       code: code,
       status: BlocStateStatus.failure,
       errorMessage: errorMessage,

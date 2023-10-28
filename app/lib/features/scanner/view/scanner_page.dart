@@ -1,20 +1,20 @@
 import 'package:app/features/fetch_product/fetch_product.dart';
 import 'package:app/features/scanner/scanner.dart';
-import 'package:app/features/scanner/view/qr_code_content.dart';
+import 'package:app/features/scanner/view/scanner_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
-class QrCodeScannerPage extends StatelessWidget {
-  const QrCodeScannerPage({super.key});
+class ScannerPage extends StatelessWidget {
+  const ScannerPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     //final l10n = context.l10n;
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => QrCodeScannerCubit()),
+        BlocProvider(create: (context) => ScannerCubit()),
         BlocProvider<ProductCubit>(create: (context) => GetIt.I()),
       ],
       child: const QrCodeScannerView(),
@@ -55,8 +55,6 @@ class _BarcodeScannerWithControllerState
       // detectionTimeoutMs: 1000,
       // returnImage: false,
       );
-
-  bool isStarted = true;
 
   @override
   Widget build(BuildContext context) {

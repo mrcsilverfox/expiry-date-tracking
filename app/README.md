@@ -168,27 +168,65 @@ Update the `CFBundleLocalizations` array in the `Info.plist` at `ios/Runner/Info
 The app folder contains only the bloc and view (the presentation layer).
 The core functionality are defined and implemented inside the packages folder. 
 
-Others funcionalities use the clean architecture structure. (data, domain, presentation). 
+Others funcionalities use the clean architecture structure. (data, domain, view). 
 
-### Core
+### Core components
 #### Package open_food_facts_api
 We use the open food facts api to fetch the scanned product. We use the barcode to fetch the product. In the future we will can use own APIs, so is important to organize the code. 
 
 The package `open_food_facts_api` contains the client. It allows to fetch a product from the barcode. It return an open food facts product object. 
 
+We have to refactor the code: we'll have a package `product_api_client`. This packages is in charge of fetch the product from a barcode. It is not the same produt user adds in his pantry. 
+
+Now the used client is `open_food_facts_client`, the client use the open food facts api.
+
 #### Package open_food_facts_api_repository
-The package `open_food_facts_api_repository` contains our Product model. This allows us to not be coupled with the open api product implementation. The repo use the open food facts client to fetch the product and returns our product model. The model contains name, brand name and images.
+The package `open_food_facts_api_repository` contains our Product model. This allows us to be decoupled with the open api product implementation. The repo use an _product_api_client_ to fetch the product and returns our product model. The model contains name, brand name and images.
 
 #### Package products_api
 The package `products_api` contains our data source. It is charge of manipulating the products entity. It defines simple CRUD operations, the domain product entity and the data product model. It will be used by the `products_repository`. 
 
-The only one implementation of products_api is `memory_products_api`. It stores products in memory. When the app is restarted, all products will be removed.
+The only one implementation of products_api now is `memory_products_api`. It stores products in memory. When the app is restarted, all products will be removed.
 
 Next implementations are: `sql_products_api` and `remote_products_api`. The first allows the user to store prodcuts in a local db. The letter stores the products in the cloud. 
+
+All this _api_ implements the `ProductsApi`.
 
 #### Package products_repository
 The package `products_repository` uses the `products_api` to retrive products, to add, edit and modify user's products. 
 In this case the repository is not an interface, but it is a concrete class. 
 
-
+```
+food_api_client (abstract)
+    - open_food_facts_client (concrete)
+    - own_server_client (concrete) -- future.
+```
+```
+open_food_facts_api_repository use an _food_api_client_ to get the products from a barcode 
+    - data:
+        - data_source: defines open_food_facts_client (concrete) and own_server_client (concrete)
+        - models: extends domain models
+        - repository: extends domain repository and use data_source    
+    - domain:
+        - models (concrete)
+        - repositories (abstract)
+        - use_cases: uses repositories 
+```
+```
+products_api (abstract)
+    - sql_products_api (concrete)
+    - remote_products_api (concrete) 
+```
+Question: who defines the data model? _products_api_ or _products_repository_
+```
+products_repository
+    - data:
+        - data_source: defines sql_products_api (concrete) and remote_products_api (concrete)
+        - models: extends domain models
+        - repository: extends domain repository and use data_source    
+    - domain:
+        - models (concrete)
+        - repositories (abstract)
+        - use_cases: uses repositories 
+```
 ### App

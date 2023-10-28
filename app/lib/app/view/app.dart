@@ -1,4 +1,3 @@
-import 'package:app/app/view/widgets/scaffold_with_nav_bar_item.dart';
 import 'package:app/routes/routes.dart';
 import 'package:flutter/material.dart';
 
@@ -34,27 +33,6 @@ class App extends StatelessWidget {
 class NestedTabNavigationExampleApp extends StatelessWidget {
   /// Creates a NestedTabNavigationExampleApp
   const NestedTabNavigationExampleApp({super.key});
-
-  static final List<ScaffoldWithNavBarItem> tabs = <ScaffoldWithNavBarItem>[
-    ScaffoldWithNavBarItem(
-      rootRoutePath: '/pantry',
-      navigatorKey: pantryNavigatorKey,
-      icon: const Icon(Icons.home),
-      label: 'Dispensa',
-    ),
-    ScaffoldWithNavBarItem(
-      rootRoutePath: '/add-product',
-      navigatorKey: addProductNavigatorKey,
-      icon: const Icon(Icons.scanner),
-      label: 'Aggiungi',
-    ),
-    ScaffoldWithNavBarItem(
-      rootRoutePath: '/shopping-list',
-      navigatorKey: shoppingNavigatorKey,
-      icon: const Icon(Icons.shop),
-      label: 'Lista spesa',
-    ),
-  ];
 
   @override
   Widget build(BuildContext context) {

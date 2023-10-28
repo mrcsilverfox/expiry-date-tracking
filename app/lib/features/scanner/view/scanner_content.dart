@@ -1,5 +1,5 @@
 import 'package:app/features/fetch_product/fetch_product.dart';
-import 'package:app/features/scanner/domain/qr_code_scanner_state.dart';
+import 'package:app/features/scanner/cubit/scanner_state.dart';
 import 'package:app/features/scanner/scanner.dart';
 import 'package:app/routes/routes.dart';
 
@@ -22,9 +22,9 @@ class _QrCodeContentState extends State<QrCodeContent>
   bool isStarted = false;
 
   final MobileScannerController _cameraController = MobileScannerController(
-    //facing: CameraFacing.front,
-    autoStart: false,
-  );
+      //facing: CameraFacing.front,
+      //autoStart: false,
+      );
 
   @override
   void initState() {
@@ -75,11 +75,11 @@ class _QrCodeContentState extends State<QrCodeContent>
           context.goNamed(AppRoute.addProduct.name, extra: state.product);
           // reset the state
           ctx.read<ProductCubit>().reset();
-          ctx.read<QrCodeScannerCubit>().reset();
+          ctx.read<ScannerCubit>().reset();
         }
       },
       builder: (productCtx, state) {
-        return BlocConsumer<QrCodeScannerCubit, QrCodeScannerState>(
+        return BlocConsumer<ScannerCubit, ScannerState>(
           listener: (context, state) {
             if (state.code != null) {
               // fetch
@@ -90,35 +90,35 @@ class _QrCodeContentState extends State<QrCodeContent>
             return Stack(
               alignment: AlignmentDirectional.bottomCenter,
               children: [
-                // MobileScanner(
-                //   errorBuilder: (context, error, child) {
-                //     return ScannerErrorWidget(error: error);
-                //   },
-                //   controller: _cameraController,
-                //   placeholderBuilder: (ctx, child) {
-                //     return const Center(
-                //       child: SizedBox(
-                //         height: 80,
-                //         width: 80,
-                //         child: CircularProgressIndicator(strokeWidth: 5),
-                //       ),
-                //     );
-                //   },
-                //   onDetect: (capture) {
-                //     print(capture.barcodes.first.rawValue);
-                //     if (capture.barcodes.first.rawValue != null) {
-                //       context
-                //           .read<QrCodeScannerCubit>()
-                //           .setCode(capture.barcodes.first.rawValue!);
-                //     }
-                //   },
-                //   overlay: QRScannerOverlay(
-                //     overlayColour: Colors.black.withOpacity(0.5),
-                //   ),
-                // ),
+                MobileScanner(
+                  errorBuilder: (context, error, child) {
+                    return ScannerErrorWidget(error: error);
+                  },
+                  controller: _cameraController,
+                  placeholderBuilder: (ctx, child) {
+                    return const Center(
+                      child: SizedBox(
+                        height: 80,
+                        width: 80,
+                        child: CircularProgressIndicator(strokeWidth: 5),
+                      ),
+                    );
+                  },
+                  onDetect: (capture) {
+                    print(capture.barcodes.first.rawValue);
+                    if (capture.barcodes.first.rawValue != null) {
+                      context
+                          .read<ScannerCubit>()
+                          .setCode(capture.barcodes.first.rawValue!);
+                    }
+                  },
+                  overlay: QRScannerOverlay(
+                    overlayColour: Colors.black.withOpacity(0.5),
+                  ),
+                ),
                 ElevatedButton(
                   onPressed: () {
-                    context.read<QrCodeScannerCubit>().setCode('8076809580748');
+                    context.read<ScannerCubit>().setCode('8076809580748');
                   },
                   // FIXME: l10n
                   child: const Text('Cerca'),
@@ -146,9 +146,7 @@ class _QrCodeContentState extends State<QrCodeContent>
                               ),
                               onSubmitted: (value) {
                                 if (value.isNotEmpty) {
-                                  context
-                                      .read<QrCodeScannerCubit>()
-                                      .setCode(value);
+                                  context.read<ScannerCubit>().setCode(value);
                                 }
                               },
                             ),

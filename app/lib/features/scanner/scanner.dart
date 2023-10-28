@@ -1,1 +1,2 @@
-export 'domain/qr_code_scanner_cubit.dart';
+export 'cubit/scanner_cubit.dart';
+export 'view/scanner_page.dart';
